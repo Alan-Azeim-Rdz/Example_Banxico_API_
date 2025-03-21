@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -36,6 +37,8 @@ namespace Example_Banxico_API
                 {
                     string json = await response.Content.ReadAsStringAsync();
                     MostrarGrafica(json);
+                    MostrarGraficaBarras(json);
+
                 }
                 else
                 {
@@ -56,7 +59,7 @@ namespace Example_Banxico_API
             // Iterar sobre los datos y extraer el valor
             foreach (var item in datos)
             {
-                double precio = double.Parse(item["dato"].ToString().Replace(",", "."));
+                double precio = double.Parse(item["dato"].ToString(), CultureInfo.InvariantCulture);
                 precios.Add(precio);
             }
 
@@ -65,18 +68,44 @@ namespace Example_Banxico_API
 
 
             // Graficar los datos en un scatter plot
-            var scart = FromPlotDataDolar.Plot.Add.Scatter(dataX, dataY);
-
-            scart.Color = Colors.Blue;
-            scart.LineWidth = 5;
-            scart.MarkerSize = 15;
-            scart.MarkerShape = MarkerShape.FilledDiamond;
+            FromPlotDataDolar.Plot.Clear();
+            FromPlotDataDolar.Plot.Add.Scatter(dataX, dataY);
             FromPlotDataDolar.Refresh();
+
         }
 
-        private void Grafica_de_datos_Load(object sender, EventArgs e)
+        private void MostrarGraficaBarras(string json)
         {
+            JObject data = JObject.Parse(json);
+            JArray datos = (JArray)data["bmx"]["series"][0]["datos"];
+            List<double> precios = new List<double>();
 
+             foreach (var item in datos)
+            {
+                double precio = double.Parse(item["dato"].ToString(), CultureInfo.InvariantCulture);
+                precios.Add(precio);
+            }
+            int sice = precios.Count;
+            double[] heights = precios.ToArray();
+
+            var hist = ScottPlot.Statistics.Histogram.WithBinCount(sice, heights);
+
+            // Display the histogram as a bar plot
+            var barPlot = FormPlotBarriel.Plot.Add.Bars(hist.Bins, hist.Counts);
+
+            // Size each bar slightly less than the width of a bin
+            foreach (var bar in barPlot.Bars)
+            {
+                bar.Size = hist.FirstBinSize * .8;
+            }
+
+            // Customize plot style
+            FormPlotBarriel.Plot.Axes.Margins(bottom: 0);
+            FormPlotBarriel.Plot.YLabel("Valor del dolar");
+            FormPlotBarriel.Plot.XLabel("dia");
+
+            FormPlotBarriel.Refresh();
         }
+
     }
 }

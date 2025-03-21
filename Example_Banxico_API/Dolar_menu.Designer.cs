@@ -33,6 +33,7 @@
             BtnArchive = new Button();
             BtnTable = new Button();
             BtnGrafic = new Button();
+            BtnPieGrafic = new Button();
             SuspendLayout();
             // 
             // LblArchive
@@ -47,7 +48,7 @@
             // LblDolar
             // 
             LblDolar.AutoSize = true;
-            LblDolar.Location = new Point(520, 103);
+            LblDolar.Location = new Point(499, 103);
             LblDolar.Name = "LblDolar";
             LblDolar.Size = new Size(35, 15);
             LblDolar.TabIndex = 1;
@@ -65,7 +66,7 @@
             // 
             // BtnTable
             // 
-            BtnTable.Location = new Point(479, 189);
+            BtnTable.Location = new Point(388, 189);
             BtnTable.Name = "BtnTable";
             BtnTable.Size = new Size(118, 42);
             BtnTable.TabIndex = 3;
@@ -75,7 +76,7 @@
             // 
             // BtnGrafic
             // 
-            BtnGrafic.Location = new Point(479, 324);
+            BtnGrafic.Location = new Point(388, 309);
             BtnGrafic.Name = "BtnGrafic";
             BtnGrafic.Size = new Size(118, 42);
             BtnGrafic.TabIndex = 4;
@@ -83,17 +84,28 @@
             BtnGrafic.UseVisualStyleBackColor = true;
             BtnGrafic.Click += BtnGrafic_Click;
             // 
-            // Data_Dolar
+            // BtnPieGrafic
+            // 
+            BtnPieGrafic.Location = new Point(549, 189);
+            BtnPieGrafic.Name = "BtnPieGrafic";
+            BtnPieGrafic.Size = new Size(118, 42);
+            BtnPieGrafic.TabIndex = 5;
+            BtnPieGrafic.Text = "Pie Grafic";
+            BtnPieGrafic.UseVisualStyleBackColor = true;
+            BtnPieGrafic.Click += BtnPieGrafic_Click;
+            // 
+            // Dolar_menu
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(839, 434);
+            Controls.Add(BtnPieGrafic);
             Controls.Add(BtnGrafic);
             Controls.Add(BtnTable);
             Controls.Add(BtnArchive);
             Controls.Add(LblDolar);
             Controls.Add(LblArchive);
-            Name = "Data_Dolar";
+            Name = "Dolar_menu";
             Text = "Data_Dolar";
             ResumeLayout(false);
             PerformLayout();
@@ -106,5 +118,6 @@
         private Button BtnArchive;
         private Button BtnTable;
         private Button BtnGrafic;
+        private Button BtnPieGrafic;
     }
 }

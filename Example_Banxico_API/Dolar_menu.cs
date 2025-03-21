@@ -36,5 +36,12 @@ namespace Example_Banxico_API
             grafica_De_Datos.Show();
             this.Close();
         }
+
+        private void BtnPieGrafic_Click(object sender, EventArgs e)
+        {
+            Pie_chart pie_Chart = new Pie_chart();
+            pie_Chart.Show();
+            this.Close();
+        }
     }
 }

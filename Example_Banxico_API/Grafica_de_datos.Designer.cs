@@ -34,6 +34,7 @@
             LblFinal = new Label();
             LblInicio = new Label();
             FromPlotDataDolar = new ScottPlot.WinForms.FormsPlot();
+            FormPlotBarriel = new ScottPlot.WinForms.FormsPlot();
             SuspendLayout();
             // 
             // BtnEnter
@@ -83,16 +84,25 @@
             // FromPlotDataDolar
             // 
             FromPlotDataDolar.DisplayScale = 1F;
-            FromPlotDataDolar.Location = new Point(441, 72);
+            FromPlotDataDolar.Location = new Point(386, 46);
             FromPlotDataDolar.Name = "FromPlotDataDolar";
             FromPlotDataDolar.Size = new Size(456, 405);
             FromPlotDataDolar.TabIndex = 13;
+            // 
+            // FormPlotBarriel
+            // 
+            FormPlotBarriel.DisplayScale = 1F;
+            FormPlotBarriel.Location = new Point(887, 46);
+            FormPlotBarriel.Name = "FormPlotBarriel";
+            FormPlotBarriel.Size = new Size(456, 405);
+            FormPlotBarriel.TabIndex = 14;
             // 
             // Grafica_de_datos
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1023, 610);
+            ClientSize = new Size(1397, 610);
+            Controls.Add(FormPlotBarriel);
             Controls.Add(FromPlotDataDolar);
             Controls.Add(BtnEnter);
             Controls.Add(DataTimeFinal);
@@ -101,7 +111,6 @@
             Controls.Add(LblInicio);
             Name = "Grafica_de_datos";
             Text = "Grafica_de_datos";
-            Load += Grafica_de_datos_Load;
             ResumeLayout(false);
             PerformLayout();
         }
@@ -113,5 +122,6 @@
         private Label LblFinal;
         private Label LblInicio;
         private ScottPlot.WinForms.FormsPlot FromPlotDataDolar;
+        private ScottPlot.WinForms.FormsPlot FormPlotBarriel;
     }
 }
